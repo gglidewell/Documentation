@@ -14,4 +14,10 @@ jobs:
           python-version: 3.x
       - run: pip install mkdocs-material 
       - run: pip install mkdocs-exclude-search 
+    
+      - name: set up git with a PAT
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.ghPages_PAT }}@github.com/gglidewell/Documentation.git
       - run: mkdocs gh-deploy --force
