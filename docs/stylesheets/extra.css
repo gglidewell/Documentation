@@ -1,0 +1,46 @@
+[data-md-color-scheme="gainwell-light"] {
+    --md-primary-fg-color:        #8E99AB;
+    --md-primary-fg-color--light: #C2C6D2;
+  }
+
+[data-md-color-scheme="gainwell-dark"] {
+    --md-primary-fg-color: #5A6978;
+    --md-primary-fg-color--dark: #5A6978;
+    --md-primary-bg-color: #00EEAE;
+    --md-accent-fg-color: #00EEAE;
+    --md-accent-bg-color: #00EEAE;
+    --md-default-bg-color:  #C2C6D2;
+    --md-default-fg-color: #ffffff;
+    --md-code-bg-color: #5A6978;
+    --md-code-fg-color: #ffffff;
+    --md-typeset-color: #5A6978;
+    --md-typeset-table-color: #5A6978;
+    --md-typeset-table-color--light: #ffffff;
+    --md-typeset-a-color: #1931E3;
+    --md-typeset-ins-color: #ffffff;
+    --md-code-hl-color:   #ffffff;
+    --md-code-hl-number-color:  #ffffff;
+    --md-code-hl-special-color:   #5A6978;
+    --md-code-hl-function-color:  #ffffff;
+    --md-code-hl-constant-color:  #ffffff;
+    --md-code-hl-keyword-color:   #ffffff;
+    --md-code-hl-string-color:    #ffffff;
+    --md-code-hl-name-color:       #ffffff;
+    --md-code-hl-operator-color:     #ffffff;
+    --md-code-hl-punctuation-color:  #ffffff;
+    --md-code-hl-comment-color:      #ffffff;
+    --md-code-hl-generic-color:      #ffffff;
+    --md-code-hl-variable-color:   #ffffff;
+    --md-typeset-mark-color: #ffffff;
+    --md-typeset-kbd-color: #ffffff;
+    --md-typeset-kbd-accent-color: #ffffff;
+    --md-typeset-kbd-border-color: #ffffff;
+    
+}
+
+.md-grid {
+  max-width: 1440px;
+}
+
+
+
