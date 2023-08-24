@@ -1,0 +1,44 @@
+name: PDF to HTML Conversion
+on:
+  push:
+    branches:
+      - initial_upload
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        
+      - name: Install pdftohtml
+        run: |
+            sudo apt update 
+            sudo apt install pdftohtml
+            
+      - run: |
+          find docs -type f -name "*.pdf" -print0 | while IFS= read -r -d '' file; do
+            filepath=$(dirname "$file")
+            filename=$(basename "$file" .pdf)
+            echo $filename
+            pdftohtml -s -dataurls "$file" "${filepath}/${filename}" 
+            find "${filepath}" -type f -name "${filename}s.html" -delete
+          done
+
+      - run: |
+          find docs -type f -name "*.html" -print0 | while IFS= read -r -d '' file; do
+            filepath=$(dirname "$file")
+            filename=$(basename "$file" .html)
+            echo $filename
+            mv "${file}" "${filepath}/${filename}.md"
+            sed -i '1i\{% raw %}' "${filepath}/${filename}.md"
+            echo '{% endraw %}' >> "${filepath}/${filename}.md"
+          done
+  
+
+      - run: |
+          find docs -type f -name "*.pdf" -delete
+          
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+            commit_message: Changed Files

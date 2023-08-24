@@ -1,0 +1,44 @@
+name: Pandoc HTML Conversion
+on:
+  push:
+    branches:
+      - initial_upload
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+
+      - run: |
+          find docs -type f -name "*.htm" -print0 | while read -d $'\0' file; do
+            iconv -f ISO-8859-1 -t UTF-8//TRANSLIT "$file" > "${file%%.htm}.html"     
+             echo "Converted: $file to ${filename}.html"
+          done
+      - run : |
+          find docs -type f -name "*.html" -print0 | while IFS= read -r -d '' f; do
+            filename=$(basename "$f" .html)
+            dir=$(dirname "$f")
+            mkdir -p "docs/images/$filename"
+            pandoc "$f" -s -o "$dir/$filename.md" -w gfm --extract-media="../images/$filename"
+          done
+  
+      - name: remove .html files
+        run: |
+            find docs -type f -name "*.htm" -delete
+            find docs -type f -name "*.html" -delete
+          
+      - name: Pull latest changes
+        run: git pull
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Changed Files
+          branch: ${{ github.head_ref }}
+
