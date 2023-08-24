@@ -1,2 +1,47 @@
+site_name: "Documentation site"
+site_url:
+repo_url: https://github.com/gglidewell/Documentation
+repo_name: 
+edit_uri: "edit/main/docs/"
+plugins:
+  - search
 theme:
+  favicon: favicon.ico
+  icon:
+      edit: material/pencil
   name: material
+  logo: Gainwell_logo.png
+  palette:
+    - media: "(prefers-color-scheme: light)" 
+      scheme: gainwell-light
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)" 
+      scheme: gainwell-dark
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.expand
+    - navigation.indexes
+    - navigation.sections
+    - toc.integrate
+    - search.highlight
+    - content.action.edit
+extra_css:
+  - stylesheets/extra.css
+markdown:
+    - kramdown
+markdown_extensions:
+    - attr_list
+    - pymdownx.caret
+    - pymdownx.mark
+    - pymdownx.tilde
+    - toc:
+        permalink: True
+        separator: "_"
+        toc_depth: 3
