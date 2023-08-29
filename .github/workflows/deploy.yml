@@ -24,4 +24,10 @@ jobs:
 
     - name: Deploy
       run: |
-        mkdocs gh-deploy --force
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          mkdocs gh-deploy --force --remote-branch gh-pages
+      env:
+        GH_TOKEN: ${{ secrets.deploy }}
+        REMOTE_REPO: "https://x-access-token:${GH_TOKEN}@github.com/gglidewell/Documentation.git"
+      
