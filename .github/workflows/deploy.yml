@@ -23,11 +23,12 @@ jobs:
         pip install mkdocs mkdocs-material
 
     - name: Deploy
+      env:
+        token: ${{ secrets.deploy }}
+        REMOTE_REPO: "https://x-access-token:${GH_TOKEN}@github.com/gglidewell/Documentation.git"
       run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           mkdocs gh-deploy --force --remote-branch gh-pages
-      env:
-        token: ${{ secrets.deploy }}
-        REMOTE_REPO: "https://x-access-token:${GH_TOKEN}@github.com/gglidewell/Documentation.git"
+     
       
